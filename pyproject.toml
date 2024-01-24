@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.10.0", "ipykernel"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gforth-kernel"
+authors = [
+	{name="David Goehrig", email="dave@dloh.org" }
+]
+description = "Jupyter Notebook for GForth"
+readme = "README.md"
+requires-python=">=3.10"
+keywords = [ "jupyter","ipython","forth" ]
+license = { text = "MIT" }
+classifiers = [ "License :: OSI Approved :: MIT License", "Programming Language :: Forth" ]
+dependencies = [ "ipykernel","jupyter-client"]
+dynamic = [ "version"]
+
+[project.optional-dependencies]
+test = [
+	"jupyter_kernel_test",
+]
+
+[project.urls]
+Homepage = "https://github.com/cthulhuology/gforth_kernel"
+
+[tool.hatch.version]
+path = "gforth_kernel/__init__.py"
+
+[tool.hatch.build.hooks.custom]
+
+[tool.hatch.build.targets.sdist]
+include = ["/gforth_kernel"]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"data_kernelspec/share" = "share"
+
